@@ -12,29 +12,31 @@ public class Contact {
     public void addContact() {
         System.out.println("Enter the number of contact you want to enter");
         int number = scanner.nextInt();
-        for (int i = 0; i < number; i++) ;
+        for (int i = 0; i < number; i++)
         {
             System.out.println("Enter contact Details of Person");
             createContact();
         }
     }
 
-    public void createContact() {
-        System.out.println("Enter First name");
-        String firstname = scanner.next();
-        System.out.println("Enter Last name");
-        String lastname = scanner.next();
-        System.out.println("Enter Address");
-        String address = scanner.next();
-        System.out.println("Enter city");
-        String city = scanner.next();
-        System.out.println("Enter state");
-        String state = scanner.next();
-        System.out.println("Enter Mobile number");
-        long mobileNumber = scanner.nextLong();
-        person = new PersonalInformation(firstname, lastname, address, city, state, mobileNumber);
-        contactList.add(person);
-    }
+        public void createContact () {
+            System.out.println("Enter First name");
+            String firstname = scanner.next();
+            System.out.println("Enter Last name");
+            String lastname = scanner.next();
+            System.out.println("Enter Address");
+            String address = scanner.next();
+            System.out.println("Enter city");
+            String city = scanner.next();
+            System.out.println("Enter state");
+            String state = scanner.next();
+            System.out.println("Enter Mobile number");
+            long mobileNumber = scanner.nextLong();
+            person = new PersonalInformation(firstname, lastname, address, city, state, mobileNumber);
+            contactList.add(person);
+            System.out.println(contactList);
+        }
+
 
     public void deleteContact() {
         System.out.println("Enter the first name to delete contact");

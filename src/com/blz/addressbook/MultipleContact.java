@@ -1,5 +1,9 @@
 package com.blz.addressbook;
 
+import java.io.FileFilter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -9,6 +13,8 @@ public class MultipleContact {
 
     List<PersonalInformation> contactList = new ArrayList<>();
     HashMap<String, Contact> contactService = new HashMap<>();
+
+//    static final String RESOURCE_FILE_PATH ="C:\\Users\\hp\\IdeaProjects\\Address Book New\\src\com\\blz\\addressbook.txt";
 
     public void addAddressBook() {
         System.out.println("Enter Name of new Address Book: ");
@@ -123,4 +129,91 @@ public class MultipleContact {
         }
     }
 
-}
+    public void readAndWriteTextFile() throws IOException {
+        while (true) {
+            System.out.println("1.Write Text file \n 2.Read Text File \n 0.Main Menu");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice) {
+                case 1:
+                    writeTextFile();
+                    break;
+                case 2:
+                    readFromTextFile();
+                    break;
+                case 3:
+                    return;
+                default:
+                    System.out.println("Please Enter the Correct Choice");
+            }
+        }
+    }
+    public void writeTextFile() throws IOException{
+        FileWriter fw = new FileWriter("C:\\Users\\hp\\IdeaProjects\\Address Book New\\src\resource\\Addbook.txt");
+        fw.write("Address Book Name,FirstName,LastName,Address,State,Phone Number,E-mail\n");
+        for (Map.Entry<String, Contact> entry : contactService.entrySet()) {
+            List<PersonalInformation> contList = entry.getValue().contactList;
+            for (PersonalInformation personInformation : contList) {
+                fw.write(entry.getKey() +
+                        "," + personInformation.getFirstname() +
+                        "," + personInformation.getLastname() +
+                        "," + personInformation.getAddress() +
+                        "," + personInformation.getCity() +
+                        "," + personInformation.getState() +
+                        "," + personInformation.getEmailId() + "\n");
+            }
+        }
+        fw.close();
+    }
+        public void readFromTextFile() throws IOException {
+        FileReader fileReader = new FileReader("C:\\Users\\hp\\IdeaProjects\\Address Book New\\src\resource\\Addbook.txt");
+        Scanner scanfile = new Scanner(fileReader);
+        scanfile.useDelimiter("\\Z");
+        System.out.println(scanfile.next() +" ");
+        scanfile.close();
+    }
+    public void readAndWriteCsvFile() throws IOException {
+        while (true) {
+            System.out.println("1.Write Csv file \n 2.Read Csv File \n 0.Main Menu");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice) {
+                case 1:
+                    writeCsvFile();
+                    break;
+                case 2:
+                    readCsvFile();
+                    break;
+                case 3:
+                    return;
+                default:
+                    System.out.println("Please Enter the Correct Choice");
+            }
+        }
+    }
+    public void writeCsvFile() throws IOException{
+        FileWriter fw = new FileWriter("C:\\Users\\hp\\IdeaProjects\\Address Book New\\src\resource\\Addbook.csv");
+        fw.write("Address Book Name,FirstName,LastName,Address,State,Zip,Phone Number,E-mail\n");
+        for (Map.Entry<String, Contact> entry : contactService.entrySet()) {
+            List<PersonalInformation> contList = entry.getValue().contactList;
+            for (PersonalInformation personInformation : contList) {
+                fw.write(entry.getKey() +
+                        "," + personInformation.getFirstname() +
+                        "," + personInformation.getLastname() +
+                        "," + personInformation.getAddress() +
+                        "," + personInformation.getCity() +
+                        "," + personInformation.getState() +
+                        "," + personInformation.getEmailId() + "\n");
+            }
+        }
+        fw.close();
+    }
+        private void readCsvFile() throws  IOException{
+            FileReader fr = new FileReader("C:\\Users\\hp\\IdeaProjects\\Address Book New\\src\resource\\Addbook.csv");
+            Scanner sc = new Scanner(fr);
+            sc.useDelimiter("\\Z");
+            System.out.println(sc.next() +" ");
+            sc.close();
+        }
+    }
+

@@ -1,9 +1,10 @@
 package com.blz.addressbook;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class AddressBookMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         Contact contact = new Contact();
         MultipleContact multipleContact = new MultipleContact();
@@ -11,7 +12,8 @@ public class AddressBookMain {
 
             System.out.println("Welcome to Address Book \n 1.Add new Address Book \n 2.Add Contact in Address Book \n " +
                     "3.Edit Contact in Address Book \n 4.Delete Contact in AddressBook \n 5.Print Address Book \n " +
-                    "6.Print Contact in Address Book \n 7.Sort Contact in Address Book \n 0.Exit");
+                    "6.Print Contact in Address Book \n 7.Sort Contact in Address Book \n 8.Rad And Write Txt File" +
+                    " \n 9.Read And Write Csv File 0.Exit");
 
             int choice = sc.nextInt();
             switch (choice) {
@@ -36,6 +38,9 @@ public class AddressBookMain {
                 case 7:
                     multipleContact.sortContacts();
                     break;
+                case 8:multipleContact.readAndWriteTextFile();
+                break;
+                case 9:multipleContact.readAndWriteCsvFile();
                 case 0:
                     System.out.println("Exit Application");
                     System.exit(0);
